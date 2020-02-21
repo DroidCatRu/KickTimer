@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav1"
+            android:icon="@drawable/layers_24"
+            android:title="Theme" />
+        <item
+            android:id="@+id/nav2"
+            android:icon="@drawable/timeline_24"
+            android:title="Statistics" />
+        <item
+            android:id="@+id/nav3"
+            android:icon="@drawable/settings_24"
+            android:title="Settings" />
+        <item
+            android:id="@+id/about_nav_item"
+            android:icon="@drawable/info_24"
+            android:title="About"/>
+    </group>
+</menu>
