@@ -1,19 +1,16 @@
 package ru.droidcat.kicktimer
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import ru.droidcat.kicktimer.R
 import kotlinx.android.synthetic.main.project_list_item.view.*
 
 
 class ProjectListAdapter(val items : ArrayList<Int>, val context: Context) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
 
-    // Gets the number of animals in the list
     override fun getItemCount(): Int {
         return items.size
     }
@@ -23,12 +20,11 @@ class ProjectListAdapter(val items : ArrayList<Int>, val context: Context) : Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (items.get(position) % 2 == 1) {
+        if (items.get(position) % 2 == 1)
             holder.container?.setBackgroundColor(ContextCompat.getColor(context, R.color.color_surface))
-        }
-        else {
+        else
             holder.container?.setBackgroundColor(ContextCompat.getColor(context, R.color.color_ripple))
-        }
+
         holder.number?.text = intToString(items.get(position))
     }
 
@@ -43,7 +39,7 @@ class ProjectListAdapter(val items : ArrayList<Int>, val context: Context) : Rec
         var flag = false;
         val digits : Array<String> = arrayOf("", "один", "два", "три", "четыре","пять", "шесть", "семь", "восемь", "девять")
         val tens1: Array<String> = arrayOf("десять", "одиннадцать", "двеннадцать", "тринадцать","четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать")
-        val tens2: Array<String> = arrayOf("", "", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяноста")
+        val tens2: Array<String> = arrayOf("", "", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто")
         val hundreds: Array<String> = arrayOf("", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
         val thousands: Array<String> = arrayOf("", "тысяча", "две тысячи", "три тысячи", "четыре тысячи", "пять тысяч", "шесть тысяч", "семь тысяч", "восемь тысяч", "девять тысяч")
 
