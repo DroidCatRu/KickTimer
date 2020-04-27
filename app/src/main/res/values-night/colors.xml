@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">@color/primary_light</color>
-    <color name="color_primary_dark">@color/primary_dark</color>
+    <color name="color_primary">@color/primary_200</color>
+    <color name="color_primary_dark">@color/primary_400</color>
+    <color name="color_on_primary">@color/secondary_900</color>
+
     <color name="color_on_secondary">#000</color>
     <color name="color_ripple">#1fb895ff</color>
     <color name="color_ripple_on_primary">#52000000</color>

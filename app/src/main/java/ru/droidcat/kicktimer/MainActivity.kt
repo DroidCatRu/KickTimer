@@ -1,34 +1,45 @@
 package ru.droidcat.kicktimer
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var recyclerView : RecyclerView
+    private lateinit var projectViewModel: ProjectViewModel
+    private lateinit var fab: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(bottom_appbar)
 
-        recyclerView = findViewById(R.id.projects_list)
+        val recyclerView: RecyclerView = findViewById(R.id.projects_list)
+        val adapter = ProjectListAdapter(this)
 
-        var  layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        var projectsList = ArrayList<Int>()
+        projectViewModel = ViewModelProvider(this).get(ProjectViewModel::class.java)
+        projectViewModel.allProjects.observe(this, Observer { projects ->
+            projects?.let { adapter.setProjects(it) }
+        })
 
-        for(i in 1..1000000) {
-            projectsList.add(i)
+        fab = findViewById(R.id.add_project_button)
+        fab.setOnClickListener {
+            projectViewModel.insert()
         }
-
-        recyclerView.adapter = ProjectListAdapter(projectsList, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     style="?attr/bottomSheetStyle"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:behavior_hideable="true"
     android:nestedScrollingEnabled="false">
 
     <include layout="@layout/account_switcher"/>
@@ -15,10 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_drawer_menu"
-        app:itemIconPadding="12dp"
-        app:itemHorizontalPadding="20dp"
-        android:theme="@style/NavigationDrawerStyle"
-        app:elevation="0dp"
-        android:overScrollMode="never"/>
+        app:itemIconPadding="16dp"
+        android:theme="@style/NavigationDrawerStyle" />
 
 </LinearLayout>

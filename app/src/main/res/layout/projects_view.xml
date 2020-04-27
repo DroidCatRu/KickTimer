@@ -10,6 +10,8 @@
         android:id="@+id/projects_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/project_list_item" />
+        tools:listitem="@layout/project_list_item"
+        android:paddingBottom="96dp"
+        android:clipToPadding="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
