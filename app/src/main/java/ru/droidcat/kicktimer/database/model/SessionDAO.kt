@@ -1,11 +1,11 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database.model
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.droidcat.kicktimer.Session
+import ru.droidcat.kicktimer.database.model.Session
 
 @Dao
 interface SessionDAO {

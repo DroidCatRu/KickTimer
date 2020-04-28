@@ -1,4 +1,4 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

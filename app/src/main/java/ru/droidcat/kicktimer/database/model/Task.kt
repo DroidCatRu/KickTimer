@@ -1,11 +1,11 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
-import ru.droidcat.kicktimer.Project
+import ru.droidcat.kicktimer.database.model.Project
 
 @Entity(
         tableName = "tasks_table",
