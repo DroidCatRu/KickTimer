@@ -1,4 +1,4 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.view_model
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.project_list_item.view.*
+import ru.droidcat.kicktimer.R
+import ru.droidcat.kicktimer.database.model.Project
 
 
 class ProjectListAdapter internal constructor(

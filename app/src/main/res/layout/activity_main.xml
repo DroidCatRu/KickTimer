@@ -5,12 +5,12 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".MainActivity">
+tools:context=".ui.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/projects_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/project_list_item"
         android:paddingBottom="96dp"
         android:clipToPadding="false"
@@ -58,6 +58,7 @@ tools:context=".MainActivity">
         app:layout_anchor="@id/bottom_appbar"
         app:rippleColor="@color/color_ripple_on_primary"
         app:srcCompat="@drawable/ic_plus_24"
+
         app:backgroundTint="@color/color_primary"
         style="@style/Widget.MaterialComponents.FloatingActionButton"/>
 

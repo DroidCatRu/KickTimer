@@ -6,10 +6,10 @@
     <color name="color_on_primary">@color/secondary_50</color>
 
     <color name="color_on_secondary">#fff</color>
-    <color name="color_ripple">@color/secondary_300</color>
+    <color name="color_ripple">#888C52FF</color>
     <color name="color_ripple_on_primary">@color/primary_600</color>
     <color name="color_on_surface">#212121</color>
-    <color name="color_surface">@color/secondary_100</color>
+    <color name="color_surface">@color/secondary_50</color>
 
     <color name="color_bottom_sheet">@color/color_surface</color>
 
@@ -49,6 +49,6 @@
     <color name="secondary_300">#E1E1E1</color>
     <color name="secondary_200">#EFEFEF</color>
     <color name="secondary_100">#F5F5F5</color>
-    <color name="secondary_50">#FAFAFA</color>
+    <color name="secondary_50">#FFFFFF</color>
 
 </resources>

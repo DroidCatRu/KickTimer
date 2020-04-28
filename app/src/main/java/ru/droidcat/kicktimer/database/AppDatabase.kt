@@ -1,4 +1,4 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database
 
 import android.content.Context
 import android.util.Log
@@ -9,6 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.droidcat.kicktimer.database.model.*
 
 @Database(
         entities = [Project::class, Task::class, Session::class, Cycle::class],
@@ -29,7 +30,8 @@ abstract class AppDatabase : RoomDatabase() {
                 context: Context,
                 scope: CoroutineScope
         ): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
+            return INSTANCE
+                    ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,

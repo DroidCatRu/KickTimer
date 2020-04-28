@@ -1,8 +1,8 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database
 
 import androidx.lifecycle.LiveData
-import ru.droidcat.kicktimer.Task
-import ru.droidcat.kicktimer.TaskDAO
+import ru.droidcat.kicktimer.database.model.Task
+import ru.droidcat.kicktimer.database.model.TaskDAO
 
 class TasksRepository(
         private val taskDAO: TaskDAO,

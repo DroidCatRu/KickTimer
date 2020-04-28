@@ -1,9 +1,9 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database
 
 import androidx.lifecycle.LiveData
-import ru.droidcat.kicktimer.CycleDAO
-import ru.droidcat.kicktimer.Session
-import ru.droidcat.kicktimer.SessionDAO
+import ru.droidcat.kicktimer.database.model.CycleDAO
+import ru.droidcat.kicktimer.database.model.Session
+import ru.droidcat.kicktimer.database.model.SessionDAO
 
 class SessionsRepository(
         private val sessionDAO: SessionDAO,

@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_drawer_menu"
-        app:itemIconPadding="16dp"
-        android:theme="@style/NavigationDrawerStyle" />
+        android:theme="@style/NavigationDrawerNoRipple"
+        style="@style/NavigationDrawerStyle" />
 
 </LinearLayout>

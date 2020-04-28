@@ -1,8 +1,8 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database
 
 import androidx.lifecycle.LiveData
-import ru.droidcat.kicktimer.Cycle
-import ru.droidcat.kicktimer.CycleDAO
+import ru.droidcat.kicktimer.database.model.CycleDAO
+import ru.droidcat.kicktimer.database.model.Cycle
 
 class CyclesRepository(private val cycleDAO: CycleDAO, session_id: String) {
 

@@ -1,6 +1,8 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.database
 
 import androidx.lifecycle.LiveData
+import ru.droidcat.kicktimer.database.model.Project
+import ru.droidcat.kicktimer.database.model.ProjectDAO
 
 class ProjectsRepository(private val projectDAO: ProjectDAO) {
 

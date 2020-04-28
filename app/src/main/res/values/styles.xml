@@ -1,22 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Widget.IOSched" parent="@android:style/Widget.Material" />
-
-    <style name="Widget.IOSched.AppBar" parent="@style/Widget.Design.AppBarLayout">
-        <item name="android:background">?attr/colorSurface</item>
-        <item name="android:elevation">8dp</item>
-    </style>
-
-    <style name="Widget.IOSched.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:paddingEnd">8dp</item>
-    </style>
 
     <style name="BottomSheetDialogTheme" parent="ModalBottomSheetDialog">
         <item name="android:navigationBarColor">@color/color_surface</item>
-        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="ModalBottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <!-- Apply attributes here -->
         <item name="behavior_hideable">true</item>
         <item name="behavior_draggable">true</item>
         <item name="behavior_fitToContents">true</item>
@@ -27,30 +17,119 @@
         <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
     </style>
 
-    <!--
-    <style name="NavigationDrawerStyle" tools:override="true" parent="Widget.Design.NavigationView">
+    <style name="NavigationDrawerStyle" parent="Widget.Design.NavigationView">
         <item name="enforceMaterialTheme">true</item>
-        <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="android:colorControlHighlight">@color/color_ripple</item>
-        <item name="android:background">@color/color_surface</item>
-
-        <item name="itemBackground">@null</item>
-        <item name="itemIconPadding">@dimen/mtrl_navigation_item_icon_padding</item>
-        <item name="itemIconTint">@color/mtrl_navigation_item_icon_tint</item>
-        <item name="itemIconSize">@dimen/mtrl_navigation_item_icon_size</item>
-        <item name="itemHorizontalPadding">@dimen/mtrl_navigation_item_horizontal_padding</item>
-        <item name="itemShapeAppearance">?attr/shapeAppearanceSmallComponent</item>
-        <item name="itemShapeFillColor">@color/mtrl_navigation_item_background_color</item>
-        <item name="itemShapeInsetStart">@dimen/mtrl_navigation_item_shape_horizontal_margin</item>
-        <item name="itemShapeInsetTop">@dimen/mtrl_navigation_item_shape_vertical_margin</item>
-        <item name="itemShapeInsetEnd">@dimen/mtrl_navigation_item_shape_horizontal_margin</item>
-        <item name="itemShapeInsetBottom">@dimen/mtrl_navigation_item_shape_vertical_margin</item>
-        <item name="itemTextAppearance">?attr/textAppearanceSubtitle2</item>
-        <item name="itemTextColor">@color/mtrl_navigation_item_text_color</item>
-    </style>
-    -->
-
-    <style name="NavigationDrawerStyle">
         <item name="android:listDivider">@color/list_divider</item>
+        <item name="insetForeground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+
+        <item name="itemTextColor">?attr/colorOnSurface</item>
+        <item name="itemIconTint">?attr/colorPrimary</item>
+        <item name="itemBackground">@drawable/nav_view_item_background</item>
+
+        <item name="itemIconPadding">16dp</item>
+        <item name="itemHorizontalPadding">16dp</item>
+        <item name="itemTextAppearance">?attr/textAppearanceSubtitle2</item>
     </style>
+
+    <style name="ShapeAppearance.KickTimer.AvatarImage" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearance.KickTimer.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.KickTimer.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.KickTimer.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+        <item name="android:textSize">97sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+        <item name="android:textSize">61sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/montserrat_medium</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/raleway_semibold</item>
+        <item name="android:fontFamily">@font/raleway_semibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.KickTimer.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>
