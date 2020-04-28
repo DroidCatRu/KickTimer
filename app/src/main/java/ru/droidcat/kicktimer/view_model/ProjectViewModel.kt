@@ -28,4 +28,38 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
     fun size(): Int? {
         return allProjects.value?.size
     }
+
+    fun moveItem(from: Int, to: Int) = viewModelScope.launch {
+        val id = getItemId(from)
+        repository.moveProject(id!!, from, to)
+        /*
+        if(from < to) {
+            for (project in projects!!) {
+                val pos = project.project_pos
+                if(pos in (from + 1) until to) {
+                    repository.updateProjectPos(getItemId(pos)!!, pos-1)
+                }
+            }
+        }
+        else if(from > to) {
+            for (project in projects!!) {
+                val pos = project.project_pos
+                if(pos in to until (from-1)) {
+                    repository.updateProjectPos(getItemId(pos)!!, pos+1)
+                }
+            }
+        }
+        repository.updateProjectPos(getItemId(from)!!, to)
+        */
+    }
+
+    private fun getItemId(pos: Int): String? {
+        val projects: List<Project>? = repository.allProjects.value
+        for(project in projects!!) {
+            if(project.project_pos == pos) {
+                return project.project_id
+            }
+        }
+        return null
+    }
 }

@@ -23,4 +23,14 @@ class ProjectsRepository(private val projectDAO: ProjectDAO) {
     suspend fun updateProjectPos(project_id: String, project_pos: Int) {
         projectDAO.updateProjectPos(project_id, project_pos)
     }
+
+    suspend fun moveProject(id: String, from: Int, to: Int) {
+        if(from < to) {
+            projectDAO.fromTo(from, to)
+        }
+        else if(from > to) {
+            projectDAO.toFrom(from, to)
+        }
+        projectDAO.updateProjectPos(id, to)
+    }
 }

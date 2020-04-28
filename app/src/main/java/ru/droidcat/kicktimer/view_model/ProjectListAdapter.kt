@@ -17,6 +17,10 @@ class ProjectListAdapter internal constructor(
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var projects = emptyList<Project>()
+    private lateinit var viewModel: ProjectViewModel
+
+    private var from: Int = 0
+    private var to: Int =0
 
     override fun getItemCount() = projects.size
 
@@ -26,7 +30,10 @@ class ProjectListAdapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.projectNameText.text = projects[position].project_name
+        val name = projects[position].project_name
+        val pos = projects[position].project_pos
+        val text = "$name $pos"
+        holder.projectNameText.text = text
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
@@ -36,5 +43,18 @@ class ProjectListAdapter internal constructor(
     internal fun setProjects(projects: List<Project>) {
         this.projects = projects
         notifyDataSetChanged()
+    }
+
+    fun setViewModel(projectViewModel: ProjectViewModel) {
+        this.viewModel = projectViewModel
+    }
+
+    fun setMove(from: Int, to: Int) {
+        this.from = from
+        this.to = to
+    }
+
+    fun moveItem() {
+        viewModel.moveItem(this.from, this.to)
     }
 }
