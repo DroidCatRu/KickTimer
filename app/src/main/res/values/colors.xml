@@ -5,10 +5,11 @@
     <color name="color_primary_dark">@color/primary_700</color>
     <color name="color_on_primary">@color/secondary_50</color>
 
+    <color name="project_hovered">@android:color/transparent</color>
     <color name="color_on_secondary">#fff</color>
     <color name="color_ripple">#888C52FF</color>
     <color name="color_ripple_on_primary">@color/primary_600</color>
-    <color name="color_on_surface">#212121</color>
+    <color name="color_on_surface">@color/secondary_900</color>
     <color name="color_surface">@color/secondary_50</color>
 
     <color name="color_bottom_sheet">@color/color_surface</color>

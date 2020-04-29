@@ -2,9 +2,11 @@ package ru.droidcat.kicktimer.ui
 
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,13 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var projectViewModel: ProjectViewModel
     private lateinit var fab: FloatingActionButton
+    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(bottom_appbar)
 
-        val recyclerView: RecyclerView = findViewById(R.id.projects_list)
+        recyclerView = findViewById(R.id.projects_list)
         val adapter = ProjectListAdapter(this)
 
         recyclerView.adapter = adapter
@@ -65,26 +68,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val itemTouchHelper by lazy {
-        // 1. Note that I am specifying all 4 directions.
-        //    Specifying START and END also allows
-        //    more organic dragging than just specifying UP and DOWN.
         val simpleItemTouchCallback =
                 object : ItemTouchHelper.SimpleCallback(UP or
-                        DOWN or
-                        START or
-                        END, 0) {
+                        DOWN, 0) {
 
                     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
                         super.onSelectedChanged(viewHolder, actionState)
+                        viewHolder?.itemView?.translationZ = 8.0f
+                        viewHolder?.itemView?.foreground = resources.getDrawable(R.drawable.project_list_hovered)
+                    }
 
-                        if (actionState == ACTION_STATE_DRAG) {
-                            viewHolder?.itemView?.alpha = 0.5f
-                        }
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     }
 
                     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
                         super.clearView(recyclerView, viewHolder)
-                        viewHolder.itemView.alpha = 1.0f
+                        viewHolder.itemView.translationZ = 0.0f
+                        viewHolder.itemView.foreground = null
                         val adapter = recyclerView.adapter as ProjectListAdapter
                         adapter.moveItem()
                     }
@@ -101,13 +102,6 @@ class MainActivity : AppCompatActivity() {
                         adapter.setMove(from, to)
 
                         return true
-                    }
-
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder,
-                                          direction: Int) {
-                        // 4. Code block for horizontal swipe.
-                        //    ItemTouchHelper handles horizontal swipe as well, but
-                        //    it is not relevant with reordering. Ignoring here.
                     }
                 }
         ItemTouchHelper(simpleItemTouchCallback)
