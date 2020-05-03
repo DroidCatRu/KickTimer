@@ -1,12 +1,11 @@
 package ru.droidcat.kicktimer.ui
 
-import android.graphics.Canvas
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.droidcat.kicktimer.R
 import ru.droidcat.kicktimer.view_model.ProjectListAdapter
+import ru.droidcat.kicktimer.view_model.ProjectListener
 import ru.droidcat.kicktimer.view_model.ProjectViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var projectViewModel: ProjectViewModel
     private lateinit var fab: FloatingActionButton
     lateinit var recyclerView: RecyclerView
+    lateinit var adapter: ProjectListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(bottom_appbar)
 
         recyclerView = findViewById(R.id.projects_list)
-        val adapter = ProjectListAdapter(this)
+        adapter = ProjectListAdapter(ProjectListener { projectId ->
+            val intent = Intent(this, TasksView::class.java)
+            intent.putExtra("projectId", projectId)
+            startActivity(intent)
+        })
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -86,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                         super.clearView(recyclerView, viewHolder)
                         viewHolder.itemView.translationZ = 0.0f
                         viewHolder.itemView.foreground = null
-                        val adapter = recyclerView.adapter as ProjectListAdapter
+                        //val adapter = recyclerView.adapter as ProjectListAdapter
                         adapter.moveItem()
                     }
 
@@ -94,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                                         viewHolder: RecyclerView.ViewHolder,
                                         target: RecyclerView.ViewHolder): Boolean {
 
-                        val adapter = recyclerView.adapter as ProjectListAdapter
+                        //val adapter = recyclerView.adapter as ProjectListAdapter
                         val from = viewHolder.adapterPosition
                         val to = target.adapterPosition
                         // Tell adapter to render the model update.
@@ -103,7 +108,9 @@ class MainActivity : AppCompatActivity() {
 
                         return true
                     }
+
                 }
         ItemTouchHelper(simpleItemTouchCallback)
     }
+
 }

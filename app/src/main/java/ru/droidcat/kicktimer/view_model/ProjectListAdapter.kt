@@ -1,52 +1,55 @@
 package ru.droidcat.kicktimer.view_model
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.project_list_item.view.*
-import ru.droidcat.kicktimer.R
 import ru.droidcat.kicktimer.database.model.Project
+import ru.droidcat.kicktimer.databinding.ProjectListItemBinding
 
 
-class ProjectListAdapter internal constructor(
-        context: Context
-) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
+class ProjectListAdapter(val clickListener: ProjectListener): RecyclerView.Adapter<ProjectListAdapter.ViewHolder>(){
 
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var projects = emptyList<Project>()
     private lateinit var viewModel: ProjectViewModel
-
+    private var projects = emptyList<Project>()
     private var from: Int = 0
     private var to: Int =0
 
-    override fun getItemCount() = projects.size
+    override fun getItemCount(): Int = projects.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val projectView = inflater.inflate(R.layout.project_list_item, parent, false)
-        return ViewHolder(projectView)
+        return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val name = projects[position].project_name
-        val pos = projects[position].project_pos
-        val text = "$name $pos"
-        holder.projectNameText.text = text
+        holder.bind(projects[position], clickListener)
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val projectNameText: TextView = view.list_item_text
-    }
+    class ViewHolder private constructor(
+            val binding: ProjectListItemBinding
+    ): RecyclerView.ViewHolder(binding.root) {
 
-    internal fun setProjects(projects: List<Project>) {
-        this.projects = projects
-        notifyDataSetChanged()
+        fun bind(item: Project, clickListener: ProjectListener) {
+            binding.project = item
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ProjectListItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
     }
 
     fun setViewModel(projectViewModel: ProjectViewModel) {
         this.viewModel = projectViewModel
+    }
+
+    fun setProjects(projects: List<Project>) {
+        this.projects = projects
+        notifyDataSetChanged()
     }
 
     fun setMove(from: Int, to: Int) {
@@ -55,6 +58,18 @@ class ProjectListAdapter internal constructor(
     }
 
     fun moveItem() {
-        viewModel.moveItem(this.from, this.to)
+        if(from != to) {
+            viewModel.moveItem(this.from, this.to)
+            from = 0
+            to = 0
+        }
     }
+
+    fun getProjectId(position: Int): String? {
+        return viewModel.getItemId(position)
+    }
+}
+
+class ProjectListener(val clickListener: (projectId: String) -> Unit) {
+    fun onClick(project: Project) = clickListener(project.project_id)
 }

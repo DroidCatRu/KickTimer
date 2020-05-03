@@ -28,6 +28,10 @@ android {
     dexOptions {
         incremental true
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

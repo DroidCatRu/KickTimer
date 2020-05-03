@@ -40,6 +40,8 @@
         <item name="textAppearanceButton">@style/TextAppearance.KickTimer.Button</item>
         <item name="textAppearanceCaption">@style/TextAppearance.KickTimer.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.KickTimer.Overline</item>
+
+        <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
     </style>
 
     <style name="AppTheme" parent="Base.AppTheme" />
