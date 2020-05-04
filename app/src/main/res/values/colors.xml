@@ -11,6 +11,7 @@
     <color name="color_ripple_on_primary">@color/primary_600</color>
     <color name="color_on_surface">@color/secondary_900</color>
     <color name="color_surface">@color/secondary_50</color>
+    <color name="color_on_surface_medium">@color/secondary_500</color>
 
     <color name="color_bottom_sheet">@color/color_surface</color>
 

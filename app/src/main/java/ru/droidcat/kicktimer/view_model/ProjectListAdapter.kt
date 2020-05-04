@@ -70,6 +70,6 @@ class ProjectListAdapter(val clickListener: ProjectListener): RecyclerView.Adapt
     }
 }
 
-class ProjectListener(val clickListener: (projectId: String) -> Unit) {
-    fun onClick(project: Project) = clickListener(project.project_id)
+class ProjectListener(val clickListener: (project: Project) -> Unit) {
+    fun onClick(project: Project) = clickListener(project)
 }

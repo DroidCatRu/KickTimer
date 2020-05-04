@@ -31,12 +31,10 @@ class TaskListAdapter internal constructor(
         val name = tasks[position].task_name
         val isDone = tasks[position].task_is_done
         holder.taskNameText.text = name
-        holder.taskIsDoneCheckbox.isChecked = isDone
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         val taskNameText: TextView = view.list_item_text
-        val taskIsDoneCheckbox: CheckBox = view.task_checkbox
     }
 
     internal fun setTasks(tasks: List<Task>) {

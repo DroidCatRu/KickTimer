@@ -32,11 +32,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(bottom_appbar)
 
         recyclerView = findViewById(R.id.projects_list)
-        adapter = ProjectListAdapter(ProjectListener { projectId ->
-            val intent = Intent(this, TasksView::class.java)
-            intent.putExtra("projectId", projectId)
-            startActivity(intent)
-        })
+        adapter = ProjectListAdapter(projectListener)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -111,6 +107,13 @@ class MainActivity : AppCompatActivity() {
 
                 }
         ItemTouchHelper(simpleItemTouchCallback)
+    }
+
+    private val projectListener = ProjectListener { project ->
+        val intent = Intent(this, TasksView::class.java)
+        intent.putExtra("projectId", project.project_id)
+        intent.putExtra("projectName", project.project_name)
+        startActivity(intent)
     }
 
 }

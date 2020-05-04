@@ -6,8 +6,8 @@
     
     <data>
         <variable
-            name="project"
-            type="ru.droidcat.kicktimer.database.model.Project" />
+            name="projectName"
+            type="String" />
     </data>
     
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -37,7 +37,7 @@
                 app:statusBarScrim="@color/color_surface"
                 app:contentScrim="@color/color_surface"
                 app:expandedTitleGravity="top"
-                app:title="@{project.project_name}"
+                app:title="@{projectName}"
                 tools:title="Project name"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
     

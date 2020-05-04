@@ -67,6 +67,7 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
 
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 }
 repositories {
     mavenCentral()

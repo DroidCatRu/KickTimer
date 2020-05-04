@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,12 @@ class TasksView: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.tasks_view)
+
+        val projectId: String? = intent.extras?.getString("projectId")
+        val projectName: String? = intent.extras?.getString("projectName")
+
+        val binding: TasksViewBinding = DataBindingUtil.setContentView(this, R.layout.tasks_view)
+        binding.projectName = projectName
 
         recyclerView = findViewById(R.id.tasks_list)
         adapter = TaskListAdapter(this)
@@ -34,8 +40,6 @@ class TasksView: AppCompatActivity() {
         recyclerView.addItemDecoration(MarginItemDecorator(
                 resources.getDimension(R.dimen.task_card_vertical).toInt(),
                 resources.getDimension(R.dimen.task_card_horizontal).toInt()))
-
-        val projectId: String? = intent.extras?.getString("projectId")
 
         taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         taskViewModel.setProjectId(projectId!!)

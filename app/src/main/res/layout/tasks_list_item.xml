@@ -12,29 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container">
-
-        <CheckBox
-            android:id="@+id/task_checkbox"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
+        
+        <com.like.LikeButton
+            android:id="@+id/task_is_done_checkbox"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="4dp"
+            app:icon_size="28dp"
+            app:like_drawable="@drawable/ic_checkbox_checked"
+            app:unlike_drawable="@drawable/ic_checkbox_unchecked"
+            app:dots_primary_color="@color/color_primary"
+            app:dots_secondary_color="@color/color_primary_dark"
+            app:circle_start_color="@color/color_primary"
+            app:circle_end_color="@color/color_primary"
+            app:anim_scale_factor="1.7"
+            app:liked="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:useMaterialThemeColors="true" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/list_item_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textAppearance="@style/TextAppearance.KickTimer.Subtitle2"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textAppearance="@style/TextAppearance.KickTimer.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/task_checkbox"
+            app:layout_constraintEnd_toStartOf="@id/task_is_fav_checkbox"
+            app:layout_constraintStart_toEndOf="@id/task_is_done_checkbox"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Task name" />
+
+        <com.like.LikeButton
+            android:id="@+id/task_is_fav_checkbox"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="4dp"
+            app:icon_size="28dp"
+            app:like_drawable="@drawable/ic_fav_checked"
+            app:unlike_drawable="@drawable/ic_fav_unchecked"
+            app:dots_primary_color="@color/color_primary"
+            app:dots_secondary_color="@color/color_primary_dark"
+            app:circle_start_color="@color/color_primary"
+            app:circle_end_color="@color/color_primary"
+            app:anim_scale_factor="1.7"
+            app:liked="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
