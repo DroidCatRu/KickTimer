@@ -59,8 +59,8 @@ tools:context=".ui.MainActivity">
         app:layout_anchor="@id/bottom_appbar"
         app:rippleColor="@color/color_ripple_on_primary"
         app:srcCompat="@drawable/ic_plus_24"
-
         app:backgroundTint="@color/color_primary"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"/>
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:onClick="openProjectDialog"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

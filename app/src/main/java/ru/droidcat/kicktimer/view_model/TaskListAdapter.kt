@@ -1,48 +1,88 @@
 package ru.droidcat.kicktimer.view_model
 
-import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.project_list_item.view.list_item_text
+import com.like.LikeButton
+import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.tasks_list_item.view.*
-import ru.droidcat.kicktimer.R
 import ru.droidcat.kicktimer.database.model.Task
+import ru.droidcat.kicktimer.databinding.TasksListItemBinding
 
-class TaskListAdapter internal constructor(
-        context: Context
-) : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
+class TaskListAdapter(
+        val clickListener: TaskClickListener
+): ListAdapter<Task, TaskListAdapter.ViewHolder>(TasksDiffCallback()) {
 
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var tasks = emptyList<Task>()
     private lateinit var viewModel: TaskViewModel
 
-    override fun getItemCount() = tasks.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val taskView = inflater.inflate(R.layout.tasks_list_item, parent, false)
-        return ViewHolder(taskView)
+    private val doneListener = TaskDoneListener { task ->
+        viewModel.setIsDone(task.task_id, !task.task_is_done)
+        Log.d("Tasks list", "task done")
     }
+
+    private val favListener = TaskFavListener { task ->
+        viewModel.setIsFav(task.task_id, !task.task_is_fav)
+        Log.d("Tasks list", "task fav")
+    }
+
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): ViewHolder = ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val name = tasks[position].task_name
-        val isDone = tasks[position].task_is_done
-        holder.taskNameText.text = name
+        holder.bind(getItem(position), clickListener, doneListener, favListener)
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val taskNameText: TextView = view.list_item_text
-    }
+    class ViewHolder private constructor(
+            val binding: TasksListItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-    internal fun setTasks(tasks: List<Task>) {
-        this.tasks = tasks
-        notifyDataSetChanged()
+        fun bind(item: Task,
+                 clickListener: TaskClickListener,
+                 doneListener: TaskDoneListener,
+                 favListener: TaskFavListener) {
+            binding.task = item
+            binding.taskClickListener = clickListener
+            binding.taskDoneListener = doneListener
+            binding.taskFavListener = favListener
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = TasksListItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
     }
 
     fun setViewModel(taskViewModel: TaskViewModel) {
         this.viewModel = taskViewModel
     }
+}
+
+class TaskDoneListener(val doneListener: (task: Task) -> Unit) {
+    fun onClick(task: Task) = doneListener(task)
+}
+
+class TaskFavListener(val favListener: (task: Task) -> Unit) {
+    fun onClick(task: Task) = favListener(task)
+}
+
+class TaskClickListener(val clickListener: (task: Task) -> Unit) {
+    fun onClick(task: Task) = clickListener(task)
+}
+
+class TasksDiffCallback: DiffUtil.ItemCallback<Task>() {
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean
+            = oldItem.task_id == newItem.task_id
+
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean
+            = oldItem == newItem
+
 }

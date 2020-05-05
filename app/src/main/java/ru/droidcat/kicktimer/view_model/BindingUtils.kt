@@ -7,6 +7,6 @@ import androidx.databinding.BindingAdapter
 @BindingAdapter("projectNameFormatted")
 fun TextView.setProjectName(item: Project?) {
     item?.let{
-        text = "${item.project_name} ${item.project_pos}"
+        text = item.project_name
     }
 }

@@ -22,7 +22,6 @@ import ru.droidcat.kicktimer.view_model.ProjectViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var projectViewModel: ProjectViewModel
-    private lateinit var fab: FloatingActionButton
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: ProjectListAdapter
 
@@ -46,11 +45,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         adapter.setViewModel(projectViewModel)
-
-        fab = findViewById(R.id.add_project_button)
-        fab.setOnClickListener {
-            projectViewModel.insert()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -114,6 +108,20 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("projectId", project.project_id)
         intent.putExtra("projectName", project.project_name)
         startActivity(intent)
+    }
+
+    fun openProjectDialog(view: View?) {
+        val addDialog = AddDialog(
+                "Add new project",
+                "project name",
+                "add project",
+                "project name is empty",
+                dialogCallback)
+        addDialog.show(supportFragmentManager, addDialog.tag)
+    }
+
+    private val dialogCallback = AddDialogCallback { text ->
+        projectViewModel.insert(text!!)
     }
 
 }

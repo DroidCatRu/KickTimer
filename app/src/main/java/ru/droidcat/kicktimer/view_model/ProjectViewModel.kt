@@ -17,11 +17,11 @@ class ProjectViewModel(application: Application): AndroidViewModel(application) 
     private val repository: ProjectsRepository = ProjectsRepository(projectDAO)
     val allProjects: LiveData<List<Project>> = repository.allProjects
 
-    fun insert() = viewModelScope.launch {
+    fun insert(name: String) = viewModelScope.launch {
         val sdf = SimpleDateFormat("dd/M/yyyy HH:mm:ss:SSS", Locale.ENGLISH)
         val currentDate = sdf.format(Date())
         val pos = size()!!
-        val project = Project(currentDate, "My test project", pos)
+        val project = Project(currentDate, name, pos)
         repository.insertProject(project)
     }
 

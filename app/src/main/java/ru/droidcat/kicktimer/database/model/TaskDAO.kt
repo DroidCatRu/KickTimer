@@ -12,7 +12,7 @@ interface TaskDAO {
     @Query("SELECT * FROM tasks_table ORDER BY task_id ASC")
     fun getAllTasks(): LiveData<List<Task>>
 
-    @Query("SELECT * FROM tasks_table WHERE project_id = :project_id ORDER BY task_is_done, task_is_fav, task_id ASC")
+    @Query("SELECT * FROM tasks_table WHERE project_id = :project_id ORDER BY task_is_done, NOT(task_is_fav), task_id ASC")
     fun getProjectTasks(project_id: String): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

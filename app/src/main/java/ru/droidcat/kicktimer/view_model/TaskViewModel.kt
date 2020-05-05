@@ -14,25 +14,34 @@ import java.util.*
 class TaskViewModel(application: Application): AndroidViewModel(application) {
 
     val taskDAO = AppDatabase.getDatabase(application, viewModelScope).taskDao()
+    val projectDAO = AppDatabase.getDatabase(application, viewModelScope).projectDao()
     private lateinit var repository: TasksRepository
     lateinit var projectTasks: LiveData<List<Task>>
     private lateinit var projectId: String
 
     fun setProjectId(projectId: String) {
-        repository = TasksRepository(taskDAO, projectId)
+        repository = TasksRepository(taskDAO, projectDAO, projectId)
         projectTasks = repository.projectTasks
         this.projectId = projectId
     }
 
-    fun insert() = viewModelScope.launch {
+    fun insert(name: String) = viewModelScope.launch {
         val sdf = SimpleDateFormat("dd/M/yyyy HH:mm:ss:SSS", Locale.ENGLISH)
         val taskId = sdf.format(Date())
-        val task = Task(taskId, "Task name", false, false, projectId)
+        val task = Task(taskId, name, false, false, projectId)
         repository.insertTask(task)
     }
 
-    fun delete(id: String) = viewModelScope.launch {
+    fun deleteTask(id: String) = viewModelScope.launch {
         repository.deleteTask(id)
+    }
+
+    fun deleteProject(id: String) = viewModelScope.launch {
+        repository.deleteProject(id)
+    }
+
+    fun renameProject(id: String, name: String) = viewModelScope.launch {
+        repository.updateProjectName(id, name)
     }
 
     fun size(): Int? {

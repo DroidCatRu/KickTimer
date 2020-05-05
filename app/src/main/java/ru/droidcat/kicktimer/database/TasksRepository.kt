@@ -1,11 +1,13 @@
 package ru.droidcat.kicktimer.database
 
 import androidx.lifecycle.LiveData
+import ru.droidcat.kicktimer.database.model.ProjectDAO
 import ru.droidcat.kicktimer.database.model.Task
 import ru.droidcat.kicktimer.database.model.TaskDAO
 
 class TasksRepository(
         private val taskDAO: TaskDAO,
+        private val projectDAO: ProjectDAO,
         project_id: String) {
 
     val projectTasks: LiveData<List<Task>> = taskDAO.getProjectTasks(project_id)
@@ -32,5 +34,13 @@ class TasksRepository(
 
     suspend fun moveTaskToProject(task_id: String, project_id: String) {
         taskDAO.moveToProject(task_id, project_id)
+    }
+
+    suspend fun updateProjectName(project_id: String, project_name: String) {
+        projectDAO.updateProjectName(project_id, project_name)
+    }
+
+    suspend fun deleteProject(project_id: String) {
+        projectDAO.deleteProject(project_id)
     }
 }

@@ -7,7 +7,9 @@ import ru.droidcat.kicktimer.database.model.Project
 import ru.droidcat.kicktimer.databinding.ProjectListItemBinding
 
 
-class ProjectListAdapter(val clickListener: ProjectListener): RecyclerView.Adapter<ProjectListAdapter.ViewHolder>(){
+class ProjectListAdapter(
+        val clickListener: ProjectListener
+): RecyclerView.Adapter<ProjectListAdapter.ViewHolder>(){
 
     private lateinit var viewModel: ProjectViewModel
     private var projects = emptyList<Project>()
