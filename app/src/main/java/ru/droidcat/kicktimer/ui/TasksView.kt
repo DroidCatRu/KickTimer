@@ -1,5 +1,6 @@
 package ru.droidcat.kicktimer.ui
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -70,7 +71,7 @@ class TasksView: AppCompatActivity() {
                 renameProject()
             }
             R.id.deleteProject -> {
-                taskViewModel.deleteProject(projectId)
+                taskViewModel.deleteProject()
                 finish()
             }
         }
@@ -103,13 +104,16 @@ class TasksView: AppCompatActivity() {
     }
 
     private val dialogRenameCallback = AddDialogCallback { text ->
-        taskViewModel.renameProject(projectId, text!!)
-        binding.projectName = text!!
+        taskViewModel.renameProject(text!!)
+        binding.projectName = text
         binding.executePendingBindings()
     }
 
     private val taskClickListener = TaskClickListener { task ->
-        Log.d("Tasks list", "task clicked: ${task.task_id}")
+        val intent = Intent(this, SessionsView::class.java)
+        intent.putExtra("taskId", task.task_id)
+        intent.putExtra("taskName", task.task_name)
+        startActivity(intent)
     }
 }
 

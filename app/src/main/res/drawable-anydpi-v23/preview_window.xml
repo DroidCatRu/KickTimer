@@ -6,14 +6,9 @@
     <item android:drawable="?attr/colorSurface" />
 
     <item
-        android:drawable="@drawable/zzzz_image"
-        android:gravity="center" />
-
-    <item
-        android:height="48dp"
+        android:drawable="@drawable/splash_icon2"
+        android:gravity="center"
         android:width="144dp"
-        android:gravity="bottom|center_horizontal"
-        android:bottom="104dp"
-        android:drawable="@drawable/droidcat"/>
+        android:height="144dp"/>
 
 </layer-list>

@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.like.LikeButton
-import com.like.OnLikeListener
-import kotlinx.android.synthetic.main.tasks_list_item.view.*
 import ru.droidcat.kicktimer.database.model.Task
 import ru.droidcat.kicktimer.databinding.TasksListItemBinding
 
@@ -39,7 +36,7 @@ class TaskListAdapter(
 
     class ViewHolder private constructor(
             val binding: TasksListItemBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Task,
                  clickListener: TaskClickListener,

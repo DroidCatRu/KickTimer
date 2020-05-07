@@ -36,12 +36,12 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         repository.deleteTask(id)
     }
 
-    fun deleteProject(id: String) = viewModelScope.launch {
-        repository.deleteProject(id)
+    fun deleteProject() = viewModelScope.launch {
+        repository.deleteProject(projectId)
     }
 
-    fun renameProject(id: String, name: String) = viewModelScope.launch {
-        repository.updateProjectName(id, name)
+    fun renameProject(name: String) = viewModelScope.launch {
+        repository.updateProjectName(projectId, name)
     }
 
     fun size(): Int? {

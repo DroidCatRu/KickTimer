@@ -21,6 +21,8 @@
     <activity android:name=".ui.MainActivity"/>
 
     <activity android:name=".ui.TasksView"/>
+      <activity android:name=".ui.SessionsView" />
+      <activity android:name=".ui.TimerView" android:configChanges="orientation|screenSize"/>
   </application>
 
 </manifest>
