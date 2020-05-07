@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="elevationOverlayEnabled">false</item>
+
         <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorSecondary">?attr/colorPrimary</item>
+        <!--<item name="colorPrimaryVariant">@color/color_primary_dark</item>-->
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+
+        <item name="colorSecondary">@color/secondary_100</item>
         <item name="colorOnSecondary">@color/color_on_secondary</item>
-        <item name="colorControlLight">@color/color_control_light</item>
+        <item name="colorControlLight">@color/color_on_surface</item>
+        <item name="colorControlNormal">@color/color_on_surface</item>
         <item name="colorOnSurface">@color/color_on_surface</item>
         <item name="android:colorBackground">@color/color_surface</item>
         <item name="colorOnBackground">@color/color_on_surface</item>
@@ -18,45 +22,25 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/use_light_navigation</item>
         <item name="android:navigationBarColor">@color/nav_bar_scrim</item>
 
-        <item name="android:colorControlHighlight">@color/color_ripple</item>
+        <item name="android:colorControlHighlight">@color/ripple_color_selector</item>
 
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.KickTimer.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.KickTimer.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.KickTimer.LargeComponent</item>
 
-        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
-    </style>
-
-    <style name="ThemeOverlay.IOSched.Light" parent="ThemeOverlay.MaterialComponents.Light">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:navigationBarColor">@color/nav_bar_scrim</item>
-    </style>
-
-    <style name="ThemeOverlay.IOSched.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
-        <item name="colorPrimary">@color/primary_light</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:navigationBarColor">@color/nav_bar_scrim</item>
-    </style>
-
-    <style name="ShapeAppearance.KickTimer.AvatarImage" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-    </style>
-
-    <style name="ShapeAppearance.KickTimer.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">4dp</item>
-    </style>
-
-    <style name="ShapeAppearance.KickTimer.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
-    </style>
-
-    <style name="ShapeAppearance.KickTimer.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.KickTimer.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.KickTimer.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.KickTimer.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.KickTimer.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.KickTimer.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.KickTimer.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.KickTimer.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.KickTimer.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.KickTimer.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.KickTimer.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.KickTimer.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.KickTimer.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.KickTimer.Overline</item>
     </style>
 
     <style name="AppTheme" parent="Base.AppTheme" />
@@ -65,9 +49,19 @@
         <item name="android:windowBackground">@drawable/preview_window</item>
     </style>
 
+    <style name="Toolbar.Button.Navigation.Tinted" parent="">
+        <item name="colorControlNormal">?attr/colorControlNormal</item>
+        <item name="actionMenuTextColor">?attr/colorControlNormal</item>
+    </style>
+
     <style name="AppTheme.Onboarding">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="NavigationDrawerNoRipple" parent="AppTheme">
+        <item name="android:colorControlHighlight">@android:color/transparent</item>
+        <item name="listPreferredItemHeightSmall">48dp</item>
     </style>
 
 </resources>

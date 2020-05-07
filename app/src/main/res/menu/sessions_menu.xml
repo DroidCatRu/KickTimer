@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/renameTask"
+        android:icon="@drawable/ic_edit"
+        android:title="Rename task"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/deleteTask"
+        android:icon="@drawable/ic_delete"
+        android:title="Delete task"
+        app:showAsAction="never"/>
+</menu>

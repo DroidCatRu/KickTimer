@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.MainActivity">
 
-    <include
-        layout="@layout/projects_view"
-        android:layout_height="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/projects_list"
         android:layout_width="match_parent"
-        android:layout_marginBottom="56dp"/>
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/project_list_item"
+        android:paddingBottom="96dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        style="@style/Widget.MaterialComponents.AppBarLayout.Surface">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:statusBarScrim="@color/color_surface"
+            app:contentScrim="@color/color_surface"
+            app:expandedTitleGravity="top"
+            app:title="@string/projects_header_title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStartWithNavigation="96dp"
+                app:layout_collapseMode="pin"
+                app:titleTextColor="@color/color_on_surface"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_appbar"
@@ -19,15 +47,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:navigationIcon="@drawable/ic_menu_24"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="8dp"
+        app:fabCradleRoundedCornerRadius="16dp"
         style="@style/Widget.MaterialComponents.BottomAppBar"/>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_project_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="new project"
-        app:icon="@drawable/ic_plus_24"
         app:layout_anchor="@id/bottom_appbar"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
-        app:rippleColor="@color/color_ripple_on_primary"/>
+        app:rippleColor="@color/color_ripple_on_primary"
+        app:srcCompat="@drawable/ic_plus_24"
+        app:backgroundTint="@color/color_primary"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:onClick="openProjectDialog"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

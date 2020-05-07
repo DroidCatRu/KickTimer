@@ -1,3 +1,6 @@
 <resources>
   <string name="app_name">Kick Timer</string>
+    <string name="projects_header_title">Projects</string>
+    <string name="state_working">Working:</string>
+  <string name="state_resting">Resting:</string>
 </resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="task"
+            type="ru.droidcat.kicktimer.database.model.Task" />
+        <variable
+            name="taskDoneListener"
+            type="ru.droidcat.kicktimer.view_model.TaskDoneListener" />
+        <variable
+            name="taskFavListener"
+            type="ru.droidcat.kicktimer.view_model.TaskFavListener" />
+        <variable
+            name="taskClickListener"
+            type="ru.droidcat.kicktimer.view_model.TaskClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?attr/colorSurface"
+        app:cardElevation="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container"
+            android:onClick="@{() -> taskClickListener.onClick(task)}">
+
+            <ru.droidcat.likebutton.KickButton
+                android:id="@+id/task_is_done_checkbox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon_size="28dp"
+                android:layout_marginHorizontal="4dp"
+                app:like_drawable="@drawable/ic_checkbox_checked"
+                app:unlike_drawable="@drawable/ic_checkbox_unchecked"
+                app:dots_primary_color="@color/color_primary"
+                app:dots_secondary_color="@color/color_primary_dark"
+                app:circle_start_color="@color/color_primary"
+                app:circle_end_color="@color/color_primary"
+                app:anim_scale_factor="1.7"
+                app:liked="@{task.task_is_done}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onToggleListener="@{() -> taskDoneListener.onClick(task)}"/>
+
+            <TextView
+                android:id="@+id/list_item_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textAppearance="@style/TextAppearance.KickTimer.Body1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/task_is_fav_checkbox"
+                app:layout_constraintStart_toEndOf="@id/task_is_done_checkbox"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{task.task_name}"
+                tools:text="Task name" />
+
+            <ru.droidcat.likebutton.KickButton
+                android:id="@+id/task_is_fav_checkbox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="4dp"
+                app:icon_size="28dp"
+                app:like_drawable="@drawable/ic_fav_checked"
+                app:unlike_drawable="@drawable/ic_fav_unchecked"
+                app:dots_primary_color="@color/color_primary"
+                app:dots_secondary_color="@color/color_primary_dark"
+                app:circle_start_color="@color/color_primary"
+                app:circle_end_color="@color/color_primary"
+                app:anim_scale_factor="1.7"
+                app:liked="@{task.task_is_fav}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onToggleListener="@{() -> taskFavListener.onClick(task)}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

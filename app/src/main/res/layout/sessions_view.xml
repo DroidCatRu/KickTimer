@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="taskName"
+            type="String" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.TasksView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sessions_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/sessions_list_item"
+            android:paddingBottom="96dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:statusBarScrim="@color/color_surface"
+                app:contentScrim="@color/color_surface"
+                app:expandedTitleGravity="top"
+                app:title="@{taskName}"
+                tools:title="Task name"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetStartWithNavigation="96dp"
+                    app:layout_collapseMode="pin"
+                    android:elevation="0dp"
+                    android:foregroundTint="@color/color_on_surface"
+                    app:titleTextColor="@color/color_on_surface"
+                    style="@style/Widget.MaterialComponents.Toolbar.Surface" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_session_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_plus_24"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="16dp"
+            style="@style/FloatingActionButton"
+            android:onClick="newSession"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

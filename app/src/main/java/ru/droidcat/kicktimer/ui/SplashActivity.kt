@@ -1,4 +1,4 @@
-package ru.droidcat.kicktimer
+package ru.droidcat.kicktimer.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ class SplashActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         sleep(500)
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(application, MainActivity::class.java))
         finish()
     }
 }

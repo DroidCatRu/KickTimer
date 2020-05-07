@@ -3,16 +3,11 @@
 
     <item android:drawable="@android:color/white" />
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/zzzz_image" />
-    </item>
-
-    <item android:bottom="48dp">
-        <bitmap
-            android:src="@drawable/droidcat"
-            android:gravity="center"/>
+    <item
+        android:width="144dp"
+        android:height="144dp"
+        android:drawable="@drawable/splash_icon2"
+        android:gravity="center">
     </item>
 
 </layer-list>
